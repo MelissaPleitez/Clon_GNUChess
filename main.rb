@@ -1,11 +1,14 @@
-require_relative 'invalid_move_error.rb'
+require_relative 'move_error.rb'
 require_relative 'pieces.rb'
 require_relative 'render.rb'
 require_relative 'board.rb'
 require_relative 'player.rb'
 require_relative 'game.rb'
-require_relative 'helper.rb'
+require_relative './bin/instructions.rb'
 
+
+Instructions.title
+sleep(5)
 
 
 starting_game = Board.start_game
@@ -16,3 +19,4 @@ gaming = Game.new(
   Render
 )
 gaming.play
+ 

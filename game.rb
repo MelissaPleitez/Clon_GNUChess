@@ -1,16 +1,15 @@
-require_relative 'helper.rb'
 require_relative './bin/instructions.rb'
+
 Helper.help do
 Instructions.title
 end
 
 class Game
-  attr_reader :player1, :player2, :board, :renderer
-  attr_accessor :current_player
+  attr_accessor :player1, :player2, :board, :renderer, :current_player
 
-  def initialize(board, player1, player2, renderer_class)
+  def initialize(board, player1, player2, class_renderer)
     @board = board
-    @renderer = renderer_class.new(board)
+    @renderer = class_renderer.new(board)
     @player1 = player1
     @player2 = player2
     @current_player = @player1
@@ -23,7 +22,7 @@ class Game
   def play
     while !over?
       renderer.render
-      puts "It's #{current_player.color}'s turn"
+      puts "Current turn: #{current_player.color}"
       if board.in_check?(current_player.color)
         puts "#{current_player.color} is in check."
       end
@@ -50,7 +49,7 @@ class Game
       if board[start_pos].color == current_player.color
         break
       end
-      puts "Did not select a #{current_player.color} piece."
+      puts "Did not select a #{current_player.color} piece. Choose a correct position"
     end
 
  
